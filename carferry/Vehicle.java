@@ -12,21 +12,22 @@ public abstract class Vehicle {
 		this.length = length;
 		this.driver = driver;
 	}
-	
+
 	public String getRegistration() {
 		return registration;
 	}
+
 	public double getUnloadedWeight() {
 		return unloadedWeight;
 	}
+
 	public double getLength() {
 		return length;
 	}
+
 	public Driver getDriver() {
 		return driver;
 	}
 	
-	
 	public abstract boolean hasCargo();
-	
 }
