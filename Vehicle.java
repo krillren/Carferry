@@ -29,5 +29,9 @@ public abstract class Vehicle {
 		return driver;
 	}
 	
+	public String toString() {
+		return this.registration;
+	}
+	
 	public abstract boolean hasCargo();
 }

@@ -23,13 +23,19 @@ public class Ticket implements Comparable<Ticket> {
 		return price;
 	}
 	
-	public String toString() {
-		return "";
 		
-	}
+	public String toString() {
+        return "[ " + this.position + " " +
+        		this.vehicle.getDriver().getFirtName() + " " +
+                this.vehicle.getDriver().getLastName() +
+                " : " + this.vehicle.getRegistration() + " : " +
+                this.price + " euros ]";
+    }
 
 	@Override
 	public int compareTo(Ticket ticket) {
-		return 0;
-	}
+        String ret1 = this.vehicle.getDriver().getLastName().concat(this.vehicle.getDriver().getFirtName());
+        String ret2 = ticket.vehicle.getDriver().getLastName().concat(ticket.vehicle.getDriver().getFirtName());
+        return ret1.compareTo(ret2);
+    }
 }
