@@ -5,12 +5,31 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
+/**
+ * class représentant le carferry et modèlisant les actions possible de ce dernier (charger et décharger des véhicules.
+ *
+ */
 public class Carferry {
+	/**
+	 * MAX_WEIGHT représente le poid total supporté par le carferry.
+	 */
 	private final double MAX_WEIGHT;
+	/**
+	 * NB_ROWS représente le nombre de rangé disponible dans la cale de carferry.
+	 */
 	private final int NB_ROWS;
+	/**
+	 * rows est une liste de Row permettant de modéliser les rangé dans la cale.
+	 */
 	private List<Row> rows;
+	/**
+	 * ticketTreeSet est un treeSet de Ticket permettant de modélisé la liste de tickets genéré sur le carferry.
+	 */
 	private Set<Ticket> ticketTreeSet;
 	
+	/**
+	 * constructeur du Carferry respectant les dimensions donné dans l'énoncé.
+	 */
 	public Carferry() {
 		this.MAX_WEIGHT = 75.0;	
 		this.NB_ROWS = 2;
@@ -23,6 +42,12 @@ public class Carferry {
 		this.ticketTreeSet = new TreeSet<Ticket>();
 	}
 	
+	/**
+	 * fonction permettant de genérer un ticket.
+	 * @param vehicle , vehicule associé au ticket.
+	 * @param row , rangé dans laquelle est placé le véhicule.
+	 * @param index , emplacement de la voiture dans la rangé.
+	 */
 	private void generateTicket(Vehicle vehicle, int row, int index) {
 		double price = 0.0;
 		
@@ -39,6 +64,11 @@ public class Carferry {
         }
 	}
 	
+	/**
+	 * fonction permettant la suprréssion d'un ticket.
+	 * @param vehicle , véhicule associé au ticket.
+	 * @return vrai si le ticket est enlevé non sinon.
+	 */
 	private boolean deleteTicket(Vehicle vehicle) {
 		for (Ticket ticket : this.ticketTreeSet) {
             if(ticket.getVehicle() == vehicle) {
@@ -49,6 +79,10 @@ public class Carferry {
         return false;
 	}
 	
+	/**
+	 * fonction permettant de renvoyer la rangé la moins chargé de la cale.
+	 * @return indice de la rangé dans le arraylist de row.
+	 */
 	private int rowMinWeight() {
 		int rowWithLessWeight = 0;
 		int currentRow = 0;
@@ -69,6 +103,10 @@ public class Carferry {
 		return rowWithLessWeight;
 	}
 	
+	/**
+	 * fonction permettant de renvoyé la rangé la plus chargé.
+	 * @return indice de la rangé dans le arraylist de row.
+	 */
 	private int rowMaxWeight() {
 		int rowWithMaxWeight = 0;
 		int currentRow = 0;
@@ -89,6 +127,12 @@ public class Carferry {
 		return rowWithMaxWeight;
 	}
 	
+	/**
+	 * fonction permettant d'insérer un véhicule dans la cale et génère un ticket en respectant les contrainte d'embarquement.
+	 * @param vehicle , véhicule inséré.
+	 * @return	vrai si l'embarquement est un succès faux sinon.
+	 * @throws BadVehicleAdditionException si le poids est exessif.
+	 */
 	public boolean addVehicle(Vehicle vehicle) throws BadVehicleAdditionException {
 		int rowWithLessWeight = rowMinWeight();
 		
@@ -109,6 +153,10 @@ public class Carferry {
 		return false;
 	}
 	
+	/**
+	 * fonction permettant de retirer un véhicule de la cale.
+	 * @return vrai si l'opération est un succès faux sinon.
+	 */
 	private boolean removeVehicle() {
 		int rowWithLessWeight = rowMaxWeight();
 		
@@ -127,16 +175,25 @@ public class Carferry {
 		return false;
 	}
 	
+	/**
+	 * fonction permettant de vider entièrement la cale.
+	 */
 	public void emptyHold() {
 		while (removeVehicle());
 	}
 	
+	/**
+	 * fonction permettant d'afficher sur la console l'ensemble des tickets.
+	 */
 	public void printTickets() {
         for(Ticket ticket : this.ticketTreeSet) {
             System.out.print(ticket.toString() + "\n");
         }
     }
 	
+	/**
+	 *	renvoi une chaine de caractère représentant le contenue des deux rangés.
+	 */
 	public String toString() {
 		String retString = "";
 		
