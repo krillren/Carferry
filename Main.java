@@ -12,41 +12,16 @@ public class Main {
 	    Carferry carferry = new Carferry();
 	    
 	    try {
-	    	carferry.addVehicle(c1);
+		    carferry.addVehicle(c1);
+		    carferry.addVehicle(v1);
+		    carferry.addVehicle(v2);
+		    carferry.addVehicle(c2);
+		    carferry.addVehicle(v3);
+		    carferry.addVehicle(c3);
 	    } catch (BadVehicleAdditionException e) {
-	    	System.out.println("Erreur, cause de poids exessif dans la cale");
+	    	System.err.println("Erreur, cause d'espace insuffisant dans la cale");
 	    }
 	    
-	    try {
-	    	carferry.addVehicle(v1);
-	    } catch (BadVehicleAdditionException e) {
-	    	System.out.println("Erreur, cause de poids exessif dans la cale");
-	    }
-	    
-	    try {
-	    	carferry.addVehicle(v2);
-	    } catch (BadVehicleAdditionException e) {
-	    	System.out.println("Erreur, cause de poids exessif dans la cale");
-	    }
-	    
-	    try {
-	    	carferry.addVehicle(c2);
-	    } catch (BadVehicleAdditionException e) {
-	    	System.out.println("Erreur, cause de poids exessif dans la cale");
-	    }
-	    
-	    try {
-	    	carferry.addVehicle(v3);
-	    } catch (BadVehicleAdditionException e) {
-	    	System.out.println("Erreur, cause de poids exessif dans la cale");
-	    }
-	    
-	    try {
-	    	carferry.addVehicle(c3);
-	    } catch (BadVehicleAdditionException e) {
-	    	System.out.println("Erreur, cause de poids exessif dans la cale");
-	    }
-
 	    System.out.println(carferry);
 	    carferry.printTickets();
 	    
