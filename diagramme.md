@@ -1,3 +1,8 @@
+# Analyse Projet POA
+## Guillaume RENAUD & Lucien MARTIAL TP2A
+
+# Diagramme de classes
+
 ```mermaid
 classDiagram
 	Vehicle <|-- Car : extends
@@ -34,12 +39,16 @@ classDiagram
 	}
 			
 	class Carferry {
-		-Row[] rows
+		-List<Row> rows;
 		-Set<Ticket> ticketTreeSet
-		-bool generateTicket(Vehicle vehicle)
+		-boolean generateTicket(Vehicle vehicle)
+		-boolean deleteTicket(Vehicle vehicle)
+		-int rowMinWeight()
+		-int rowMaxWeight()
 		+boolean addVehicle(Vehicle vehicle)
-		+boolean removeLastVehicle(Vehicle vehicle)
-		+boolean emptyHold()
+		+boolean removeVehicle()
+		+void emptyHold()
+		+Ticket[] getCarsRow(int index)
 		+String toString()
 	}
 			
@@ -52,6 +61,9 @@ classDiagram
 		+boolean removeVehicleRow()
 		+double getTotalWeigth()
 		+double getRemainingSpace()
+		+int getLastIndex()
+		+boolean isEmpty()
+		+String toString()
 	}
 			
 	class Driver {
@@ -70,6 +82,7 @@ classDiagram
 		+String getPosition()
 		+Vehicle getVehicle()
 		+double getPrice()
+		+String get_small_info_toString()
 		+String toString()
 	}
 
@@ -84,5 +97,6 @@ classDiagram
 		+double getLength()
 		+Driver getDriver()
 		+abstract bool hasCargo()
+		+String toString()
 	}
 ```
