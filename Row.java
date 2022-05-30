@@ -47,6 +47,9 @@ public class Row {
 	 * @throws BadVehicleAdditionException , si la longueur ne le permet pas.
 	 */
 	public boolean addVehicleRow(Vehicle vehicle) throws BadVehicleAdditionException {
+		if(vehicle == null) {
+			throw new BadVehicleAdditionException("véhicule inéxistant");
+		}
 		if (vehicle.getLength() + 0.5 > this.remainingSpace) {
 			throw new BadVehicleAdditionException("Taille insuffisante dans la cale");
 		}
@@ -59,7 +62,7 @@ public class Row {
 			Truck truck = (Truck)(vehicle);
 			this.totalWeight += truck.getCargoWeight();
 		}
-		
+		lastIndex+=1;
 		return true;
 	}
 	

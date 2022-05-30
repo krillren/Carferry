@@ -1,6 +1,7 @@
 package carferry;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
@@ -141,27 +142,24 @@ public class Carferry {
 		}
 		
 		try {
-			if (this.rows.get(rowWithLessWeight).addVehicleRow(vehicle)) {
-				this.generateTicket(vehicle, rowWithLessWeight, this.rows.get(rowWithLessWeight).getLastIndex());
-				return true;
-			}
+			this.rows.get(rowWithLessWeight).addVehicleRow(vehicle);
 		} catch (BadVehicleAdditionException e) {
-			System.err.println("Erreur, cause d'espace insuffisant dans la cale");
-			return false;
+			throw new BadVehicleAdditionException("Erreur : "+e.getMessage());
 		}
 		
-		return false;
+		this.generateTicket(vehicle, rowWithLessWeight, this.rows.get(rowWithLessWeight).getLastIndex());
+		return true;
 	}
 	
 	/**
 	 * fonction permettant de retirer un véhicule de la cale.
 	 * @return vrai si l'opération est un succès faux sinon.
 	 */
-	private boolean removeVehicle() {
+	public String removeVehicle() {
 		int rowWithLessWeight = rowMaxWeight();
 		
 		if (rowWithLessWeight == -1) {
-			return false;
+			return null;
 		}
 		
 		Vehicle removedVehicle = this.rows.get(rowWithLessWeight).removeVehicleRow(); 
@@ -169,17 +167,17 @@ public class Carferry {
 		if (removedVehicle != null) {
 			System.out.println(removedVehicle);
 			this.deleteTicket(removedVehicle);
-			return true;
+			return removedVehicle.getRegistration();
 		}
 		
-		return false;
+		return null;
 	}
 	
 	/**
 	 * fonction permettant de vider entièrement la cale.
 	 */
 	public void emptyHold() {
-		while (removeVehicle());
+		while (removeVehicle()!=null);
 	}
 	
 	/**
@@ -201,5 +199,31 @@ public class Carferry {
 		retString += "\nRangée Droite :\n" + this.rows.get(1).toString();
 		
 		return retString;
+	}
+
+	public Ticket[] getCarsRow(int index) {
+		List<Ticket> result = new ArrayList<Ticket>();
+		switch(index) {
+			case 0:
+				for(Ticket t : ticketTreeSet) {
+					if(t.getPositionString().charAt(0) == 'G') {
+						result.add(t);
+					}
+				}
+			break;
+			
+			case 1:
+				for(Ticket t : ticketTreeSet) {
+					if(t.getPositionString().charAt(0) == 'D') {
+						result.add(t);
+					}
+				}
+			break;
+			
+			default:
+			break;
+		}
+		result.sort(null);
+		return result.toArray(new Ticket[0]);
 	}
 }

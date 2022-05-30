@@ -10,7 +10,7 @@ public abstract class Vehicle {
 	 */
 	private String registration;
 	/**
-	 * poid à vide.
+	 * poids à vide.
 	 */
 	private double unloadedWeight;
 	/**
@@ -25,7 +25,7 @@ public abstract class Vehicle {
 	/**
 	 * constructeur du véhicule.
 	 * @param registration , numéro d'immatriculation.
-	 * @param unloadedWeight , poid à vide.
+	 * @param unloadedWeight , poids à vide.
 	 * @param length , longueur de la voiture.
 	 * @param driver , conducteur.
 	 */

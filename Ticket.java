@@ -62,6 +62,11 @@ public class Ticket implements Comparable<Ticket> {
                 " : " + this.vehicle.getRegistration() + " : " +
                 this.price + " euros ]";
     }
+	public String get_small_info_toString() {
+		 return 	this.vehicle.getDriver().getFirtName() + " " +
+	                this.vehicle.getDriver().getLastName() + " " +
+	                this.vehicle.getRegistration();
+	}
 
 	
 	/**
