@@ -14,19 +14,6 @@ classDiagram
 		<<interface>>
 		+int compareTo(T o)
 	}
-      
-	class Vehicle {
-		<<abstract>>
-		-String registration
-		-double unloadedWeight
-		-double length
-		-Driver driver
-		+String getRegistration()
-		+double getUnloadedWeight()
-		+double getLength()
-		+Driver getDriver()
-		+abstract bool hasCargo()
-	}
 			
 	class Car {
 		-byte nbPassenger
